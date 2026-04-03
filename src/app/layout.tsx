@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: "Haptic Nation Veteran Outreach",
     images: [
       {
-        url: "/images/branding/og-image-v2.jpg",
+        url: "/images/branding/og-image1-v2.jpg",
         width: 1200,
         height: 630,
         alt: "Haptic Nation Veteran Outreach",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Haptic Nation Veteran Outreach",
     description:
       "Trade training. Working dogs. Homestead systems. Built for veterans.",
-    images: ["/images/branding/og-image-v2.jpg"],
+    images: ["/images/branding/og-image1-v2.jpg"],
   },
 };
 
