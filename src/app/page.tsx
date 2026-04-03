@@ -289,14 +289,23 @@ export default function HomePage() {
               supports the long-term canine side of the broader mission.
             </p>
 
-            <a
-              href="https://www.patriotk9kennel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block text-sm font-semibold text-amber-400 hover:underline"
-            >
-              Visit Das Müller →
-            </a>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <a
+                href="https://www.patriotk9kennel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black transition hover:bg-amber-300"
+              >
+                Visit Das Müller
+              </a>
+
+              <Link
+                href="/partners"
+                className="inline-block rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:bg-white/5"
+              >
+                View Sponsor Page
+              </Link>
+            </div>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
@@ -313,22 +322,28 @@ export default function HomePage() {
               mission through professional canine systems and training structure.
             </p>
 
-            <a
-              href="https://train.hapticvets.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block text-sm font-semibold text-amber-400 hover:underline"
-            >
-              Visit Dog Training →
-            </a>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <a
+                href="https://train.hapticvets.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black transition hover:bg-amber-300"
+              >
+                Visit Dog Training
+              </a>
+
+              <Link
+                href="/partners"
+                className="inline-block rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:bg-white/5"
+              >
+                View Sponsor Page
+              </Link>
+            </div>
           </div>
         </div>
       </Section>
 
-      <Section
-        eyebrow="Support HNVO"
-        title="Help Build Something Real."
-      >
+      <Section eyebrow="Support HNVO" title="Help Build Something Real.">
         <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center">
           <p className="mx-auto max-w-3xl text-lg text-neutral-300">
             Haptic Nation Veteran Outreach is actively building a working system

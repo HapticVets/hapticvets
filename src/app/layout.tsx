@@ -3,9 +3,34 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hapticvets.com"),
   title: "Haptic Nation Veteran Outreach",
   description:
-    "Haptic Nation Veteran Outreach is building a veteran-focused trade school, self-sustaining homestead, and transition system built on skill, structure, and purpose.",
+    "Veteran-focused trade training, working dog programs, and homestead-based transition systems built to create real-world purpose after service.",
+  openGraph: {
+    title: "Haptic Nation Veteran Outreach",
+    description:
+      "Building a veteran-focused trade school, working dog program, and self-sustaining homestead system.",
+    url: "https://hapticvets.com",
+    siteName: "Haptic Nation Veteran Outreach",
+    images: [
+      {
+        url: "/images/branding/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Haptic Nation Veteran Outreach",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Haptic Nation Veteran Outreach",
+    description:
+      "Trade training. Working dogs. Homestead systems. Built for veterans.",
+    images: ["/images/branding/og-image.jpg"],
+  },
 };
 
 function Header() {
@@ -41,7 +66,7 @@ function Header() {
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col leading-tight">
             <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
               Online
             </span>
@@ -135,7 +160,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="bg-neutral-950 text-white antialiased">
         <Header />
         <main>{children}</main>
