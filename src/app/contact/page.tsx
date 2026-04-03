@@ -6,214 +6,136 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    subject: "",
+    phone: "",
+    interest: "",
+    veteran: "",
     message: "",
   });
 
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const handleChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
+    setLoading(true);
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMessage(data.error || "Failed to send message.");
-        return;
-      }
-
-      setStatus("success");
+    if (res.ok) {
+      setSuccess(true);
       setForm({
         name: "",
         email: "",
-        subject: "",
+        phone: "",
+        interest: "",
+        veteran: "",
         message: "",
       });
-    } catch {
-      setStatus("error");
-      setErrorMessage("Failed to send message.");
     }
-  }
+
+    setLoading(false);
+  };
 
   return (
-    <section className="mx-auto max-w-4xl px-6 py-20 md:px-10">
-      <p className="text-sm uppercase tracking-[0.25em] text-amber-400">
-        Contact
+    <section className="max-w-3xl mx-auto px-6 py-20 text-white">
+      <h1 className="text-4xl font-bold mb-6">Contact HNVO</h1>
+
+      <p className="mb-10 text-neutral-400">
+        Tell us what you’re looking for and we’ll get back to you directly.
       </p>
 
-      <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
-        Connect With HNVO
-      </h1>
+      {success && (
+        <p className="mb-6 text-green-400">
+          Message sent. We’ll reach out shortly.
+        </p>
+      )}
 
-      <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
-        For sponsorships, partnerships, veteran interest, or general mission
-        inquiries, send a message below.
-      </p>
+      <form onSubmit={handleSubmit} className="space-y-6">
 
-      <div className="mt-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="text-2xl font-semibold text-white">
-            Contact Information
-          </h2>
+        {/* Name */}
+        <input
+          name="name"
+          placeholder="Full Name"
+          value={form.name}
+          onChange={handleChange}
+          required
+          className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded"
+        />
 
-          <div className="mt-6 space-y-5 text-sm leading-7 text-neutral-300">
-            <p>
-              <span className="font-semibold text-white">
-                General Inquiries:
-              </span>{" "}
-              <a
-                href="mailto:jreese@hapticvets.com"
-                className="text-amber-400 hover:underline"
-              >
-                jreese@hapticvets.com
-              </a>
-            </p>
+        {/* Email */}
+        <input
+          name="email"
+          type="email"
+          placeholder="Email Address"
+          value={form.email}
+          onChange={handleChange}
+          required
+          className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded"
+        />
 
-            <p>
-              <span className="font-semibold text-white">
-                Sponsorship / Partnerships:
-              </span>{" "}
-              <a
-                href="mailto:jreese@hapticvets.com"
-                className="text-amber-400 hover:underline"
-              >
-                jreese@hapticvets.com
-              </a>
-            </p>
+        {/* Phone */}
+        <input
+          name="phone"
+          placeholder="Phone Number (optional)"
+          value={form.phone}
+          onChange={handleChange}
+          className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded"
+        />
 
-            <p>
-              <span className="font-semibold text-white">
-                Veteran Program Interest:
-              </span>{" "}
-              <a
-                href="mailto:jreese@hapticvets.com"
-                className="text-amber-400 hover:underline"
-              >
-                jreese@hapticvets.com
-              </a>
-            </p>
-          </div>
-        </div>
+        {/* Interest */}
+        <select
+          name="interest"
+          value={form.interest}
+          onChange={handleChange}
+          required
+          className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded"
+        >
+          <option value="">What are you interested in?</option>
+          <option>Dog Training</option>
+          <option>Veteran Trade Program</option>
+          <option>Sponsorship / Partnership</option>
+          <option>General Inquiry</option>
+        </select>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label
-                htmlFor="name"
-                className="mb-2 block text-sm font-semibold text-white"
-              >
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={form.name}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, name: e.target.value }))
-                }
-                className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-amber-400"
-                placeholder="Your name"
-                required
-              />
-            </div>
+        {/* Veteran */}
+        <select
+          name="veteran"
+          value={form.veteran}
+          onChange={handleChange}
+          required
+          className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded"
+        >
+          <option value="">Are you a Veteran?</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
 
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-2 block text-sm font-semibold text-white"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={form.email}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, email: e.target.value }))
-                }
-                className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-amber-400"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
+        {/* Message */}
+        <textarea
+          name="message"
+          placeholder="Tell us more about your situation or what you're looking for..."
+          value={form.message}
+          onChange={handleChange}
+          rows={5}
+          required
+          className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded"
+        />
 
-            <div>
-              <label
-                htmlFor="subject"
-                className="mb-2 block text-sm font-semibold text-white"
-              >
-                Subject
-              </label>
-              <input
-                id="subject"
-                type="text"
-                value={form.subject}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, subject: e.target.value }))
-                }
-                className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-amber-400"
-                placeholder="How can we help?"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-2 block text-sm font-semibold text-white"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                value={form.message}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, message: e.target.value }))
-                }
-                className="min-h-[180px] w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-amber-400"
-                placeholder="Tell us about your inquiry..."
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="rounded-full bg-amber-400 px-6 py-3 font-semibold text-black transition hover:bg-amber-300 disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {status === "loading" ? "Sending..." : "Send Message"}
-            </button>
-
-            {status === "success" && (
-              <p className="text-sm font-medium text-green-400">
-                Message sent successfully.
-              </p>
-            )}
-
-            {status === "error" && (
-              <p className="text-sm font-medium text-red-400">
-                {errorMessage}
-              </p>
-            )}
-          </form>
-        </div>
-      </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-yellow-500 text-black font-semibold py-4 rounded hover:bg-yellow-400 transition"
+        >
+          {loading ? "Sending..." : "Submit Request"}
+        </button>
+      </form>
     </section>
   );
 }

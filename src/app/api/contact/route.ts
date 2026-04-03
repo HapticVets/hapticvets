@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -5,46 +6,31 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, subject, message } = body;
 
-    if (!name || !email || !subject || !message) {
-      return Response.json(
-        { error: "All fields are required." },
-        { status: 400 }
-      );
-    }
+    const { name, email, phone, interest, veteran, message } = body;
 
-    const result = await resend.emails.send({
+    await resend.emails.send({
       from: "HNVO Contact <contact@updates.hapticvets.com>",
-      to: ["jreese@hapticvets.com"],
-      replyTo: email,
-      subject: `HNVO Contact Form: ${subject}`,
+      to: ["jreese@hapticnation.com"], // your email
+      subject: `New Lead: ${interest}`,
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-          <h2>New HNVO Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <hr />
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, "<br />")}</p>
-        </div>
+        <h2>New Contact Submission</h2>
+
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "N/A"}</p>
+        <p><strong>Interest:</strong> ${interest}</p>
+        <p><strong>Veteran:</strong> ${veteran}</p>
+
+        <hr/>
+
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
       `,
     });
 
-    if (result.error) {
-      return Response.json(
-        { error: result.error.message || "Failed to send email." },
-        { status: 500 }
-      );
-    }
-
-    return Response.json({ success: true, data: result.data });
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Contact form error:", error);
-    return Response.json(
-      { error: "Something went wrong while sending the form." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to send" }, { status: 500 });
   }
 }
