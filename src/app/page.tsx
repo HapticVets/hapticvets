@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-const STRIPE_LINK = "https://buy.stripe.com/YOUR_LINK_HERE";
-
 function Section({
   eyebrow,
   title,
@@ -57,36 +55,6 @@ export default function HomePage() {
     },
   ];
 
-  const roadmap = [
-    {
-      phase: "Phase 1 — Foundation",
-      items: [
-        "Develop platform and outreach",
-        "Build training structure",
-        "Establish partnerships",
-        "Launch initial programs",
-      ],
-    },
-    {
-      phase: "Phase 2 — Expansion",
-      items: [
-        "Scale trade pathways",
-        "Expand homestead systems",
-        "Increase equipment and training capacity",
-        "Grow veteran intake",
-      ],
-    },
-    {
-      phase: "Phase 3 — Full System",
-      items: [
-        "Build full training campus",
-        "Launch certification-aligned programs",
-        "Expand housing support",
-        "Create long-term veteran ecosystem",
-      ],
-    },
-  ];
-
   const credibilityPoints = [
     {
       title: "Veterans Already Have the Foundation",
@@ -103,6 +71,36 @@ export default function HomePage() {
     {
       title: "The Model Is Built for Long-Term Use",
       text: "This is not designed as a temporary feel-good program. It is being built as a real system that can grow into training, housing, certification pathways, and community.",
+    },
+  ];
+
+  const roadmap = [
+    {
+      phase: "Phase 1 — Foundation",
+      items: [
+        "Build independent kennel infrastructure",
+        "Expand dog training systems",
+        "Strengthen homestead base already in motion",
+        "Establish revenue-producing foundations",
+      ],
+    },
+    {
+      phase: "Phase 2 — Expansion",
+      items: [
+        "Expand fencing and livestock systems",
+        "Build cattle shelter for milking and beef program",
+        "Add poultry infrastructure beyond egg production",
+        "Increase equipment and program capacity",
+      ],
+    },
+    {
+      phase: "Phase 3 — Full System",
+      items: [
+        "Build trade program spaces",
+        "Launch certification-aligned pathways",
+        "Expand veteran support infrastructure",
+        "Create long-term self-sustaining ecosystem",
+      ],
     },
   ];
 
@@ -129,25 +127,24 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg text-neutral-300">
-            Building a veteran-focused trade school, homestead, and real-world
-            transition system for life after service.
+            Building a veteran-focused trade school, working dog program, and
+            self-sustaining homestead system designed to create structure,
+            responsibility, and real-world purpose after service.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href={STRIPE_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-amber-400 px-6 py-3 font-semibold text-black"
-            >
-              Donate Now
-            </a>
-
             <Link
               href="/contact"
-              className="rounded-full border border-white/20 px-6 py-3"
+              className="rounded-full bg-amber-400 px-6 py-3 font-semibold text-black transition hover:bg-amber-300"
             >
-              Get Involved
+              Support the Mission
+            </Link>
+
+            <Link
+              href="/partners"
+              className="rounded-full border border-white/20 px-6 py-3 transition hover:bg-white/5"
+            >
+              Partner With Us
             </Link>
           </div>
         </div>
@@ -161,7 +158,9 @@ export default function HomePage() {
               className="rounded-3xl border border-white/10 bg-white/5 p-8"
             >
               <h3 className="text-2xl font-semibold">{item.title}</h3>
-              <p className="mt-4 text-sm text-neutral-300">{item.text}</p>
+              <p className="mt-4 text-sm leading-7 text-neutral-300">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
@@ -210,6 +209,44 @@ export default function HomePage() {
       </Section>
 
       <Section
+        eyebrow="Mission in Motion"
+        title="This is already being built, not just imagined."
+      >
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+            <img
+              src="/images/mission/mission-veterans.jpg"
+              alt="Veteran Community"
+              className="h-72 w-full object-cover"
+            />
+            <div className="p-6">
+              <h3 className="text-2xl font-semibold">Veteran Community</h3>
+              <p className="mt-4 text-neutral-300">
+                Veterans working together in a structured environment built on
+                teamwork, discipline, and shared purpose.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+            <img
+              src="/images/mission/mission-homestead.jpg"
+              alt="Homestead Therapy"
+              className="h-72 w-full object-cover"
+            />
+            <div className="p-6">
+              <h3 className="text-2xl font-semibold">Homestead Therapy</h3>
+              <p className="mt-4 text-neutral-300">
+                Chickens are already in motion, and the next steps include
+                fencing, cattle infrastructure for milk and beef, and expanded
+                food systems that make the land more self-sustaining.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section
         eyebrow="Roadmap"
         title="A phased approach to building the full system."
       >
@@ -234,25 +271,86 @@ export default function HomePage() {
       </Section>
 
       <Section
-        eyebrow="Support the Mission"
-        title="Help build something that actually changes lives."
+        eyebrow="Partners"
+        title="Mission-aligned partnerships strengthen the system."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+            <div className="mb-6 flex h-32 items-center justify-center">
+              <img
+                src="/images/partners/das-muller-logo.png"
+                alt="Das Müller Kennel"
+                className="h-full object-contain scale-125"
+              />
+            </div>
+
+            <p className="text-sm leading-7 text-neutral-300">
+              Das Müller Kennel contributes to working-dog development and
+              supports the long-term canine side of the broader mission.
+            </p>
+
+            <a
+              href="https://www.patriotk9kennel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block text-sm font-semibold text-amber-400 hover:underline"
+            >
+              Visit Das Müller →
+            </a>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+            <div className="mb-6 flex h-32 items-center justify-center">
+              <img
+                src="/images/partners/patriot-k9-logo.png"
+                alt="Patriot K9 Command"
+                className="h-full object-contain scale-125"
+              />
+            </div>
+
+            <p className="text-sm leading-7 text-neutral-300">
+              Patriot K9 Command supports the online dog training side of the
+              mission through professional canine systems and training structure.
+            </p>
+
+            <a
+              href="https://train.hapticvets.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block text-sm font-semibold text-amber-400 hover:underline"
+            >
+              Visit Dog Training →
+            </a>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Support HNVO"
+        title="Help Build Something Real."
       >
         <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center">
           <p className="mx-auto max-w-3xl text-lg text-neutral-300">
-            Your support directly contributes to building trade programs,
-            expanding homestead infrastructure, and creating a real system for
-            veterans to transition into purposeful civilian life.
+            Haptic Nation Veteran Outreach is actively building a working system
+            for veterans through trade training, working dog development, and
+            self-sustaining homestead infrastructure. If you want to support,
+            sponsor, or partner with the mission, reach out directly.
           </p>
 
-          <div className="mt-8">
-            <a
-              href={STRIPE_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-amber-400 px-8 py-4 text-lg font-semibold text-black"
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Link
+              href="/contact"
+              className="inline-block rounded-full bg-amber-400 px-8 py-4 text-lg font-semibold text-black transition hover:bg-amber-300"
             >
-              Donate to HNVO
-            </a>
+              Become a Sponsor
+            </Link>
+
+            <Link
+              href="/contact"
+              className="inline-block rounded-full border border-neutral-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-neutral-500"
+            >
+              Support the Mission
+            </Link>
           </div>
         </div>
       </Section>
