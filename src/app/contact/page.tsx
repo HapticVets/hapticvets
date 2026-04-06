@@ -1,13 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Script from "next/script";
-
-declare global {
-  interface Window {
-    turnstile?: any;
-  }
-}
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -23,31 +17,6 @@ export default function ContactPage() {
   const [success, setSuccess] = useState(false);
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
-  const widgetId = useRef<string | null>(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!window.turnstile || widgetId.current || !siteKey) return;
-
-      const container = document.getElementById("turnstile-container");
-      const hidden = document.getElementById(
-        "turnstile-token"
-      ) as HTMLInputElement;
-
-      if (!container || !hidden) return;
-
-      widgetId.current = window.turnstile.render(container, {
-        sitekey: siteKey,
-        callback: (token: string) => {
-          hidden.value = token;
-        },
-      });
-
-      clearInterval(interval);
-    }, 300);
-
-    return () => clearInterval(interval);
-  }, [siteKey]);
 
   const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -56,10 +25,11 @@ export default function ContactPage() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+    setSuccess(false);
 
-    const token = (
-      document.getElementById("turnstile-token") as HTMLInputElement
-    )?.value;
+    const token = (document.querySelector(
+      'input[name="cf-turnstile-response"]'
+    ) as HTMLInputElement)?.value;
 
     if (!token) {
       alert("Please complete verification.");
@@ -75,11 +45,13 @@ export default function ContactPage() {
       body: JSON.stringify({
         ...form,
         turnstileToken: token,
-        companyFax: "", // honeypot
+        companyFax: "",
       }),
     });
 
-    if (res.ok) {
+    const result = await res.json();
+
+    if (res.ok && result.success) {
       setSuccess(true);
       setForm({
         name: "",
@@ -89,10 +61,8 @@ export default function ContactPage() {
         veteran: "",
         message: "",
       });
-
-      if (window.turnstile && widgetId.current) {
-        window.turnstile.reset(widgetId.current);
-      }
+    } else {
+      alert(result.error || "Something went wrong.");
     }
 
     setLoading(false);
@@ -101,7 +71,7 @@ export default function ContactPage() {
   return (
     <>
       <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         strategy="afterInteractive"
       />
 
@@ -115,7 +85,6 @@ export default function ContactPage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Honeypot */}
           <input type="text" name="companyFax" className="hidden" />
 
@@ -139,11 +108,13 @@ export default function ContactPage() {
 
           <textarea name="message" placeholder="Tell us more..." value={form.message} onChange={handleChange} rows={5} required className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded" />
 
-          {/* CAPTCHA */}
-          <div id="turnstile-container" />
-          <input type="hidden" id="turnstile-token" />
+          {/* ✅ Native Turnstile widget */}
+          <div
+            className="cf-turnstile"
+            data-sitekey={siteKey}
+          ></div>
 
-          <button type="submit" disabled={loading} className="w-full bg-yellow-500 text-black font-semibold py-4 rounded hover:bg-yellow-400">
+          <button type="submit" disabled={loading} className="w-full bg-yellow-500 text-black font-semibold py-4 rounded">
             {loading ? "Sending..." : "Submit Request"}
           </button>
         </form>
