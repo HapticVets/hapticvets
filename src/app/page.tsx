@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DonationSection from "@/components/DonationSection";
 
 function Section({
   eyebrow,
@@ -369,6 +370,8 @@ export default function HomePage() {
           </div>
         </div>
       </Section>
+
+      <DonationSection />
     </div>
   );
 }
