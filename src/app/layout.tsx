@@ -34,6 +34,8 @@ export const metadata: Metadata = {
 };
 
 function Header() {
+  const donationUrl = process.env.NEXT_PUBLIC_DONATION_URL;
+
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -86,6 +88,17 @@ function Header() {
               {item.label}
             </Link>
           ))}
+
+          {donationUrl && (
+            <a
+              href={donationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-amber-400 px-4 py-1.5 font-semibold text-black transition hover:bg-amber-300"
+            >
+              Donate
+            </a>
+          )}
         </nav>
       </div>
     </header>
