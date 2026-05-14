@@ -1,15 +1,15 @@
 export default function AboutPage() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-20 md:px-10">
-      <p className="text-sm uppercase tracking-[0.25em] text-amber-400">
+    <section className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20">
+      <p className="text-xs uppercase tracking-[0.2em] text-amber-400 sm:text-sm sm:tracking-[0.25em]">
         About HNVO
       </p>
 
-      <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
+      <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
         Why Haptic Nation Veteran Outreach Exists
       </h1>
 
-      <div className="mt-10 space-y-6 text-lg leading-8 text-neutral-300">
+      <div className="mt-8 space-y-6 text-base leading-8 text-neutral-300 sm:mt-10 sm:text-lg">
         <p>
           Haptic Nation Veteran Outreach was built on the belief that veterans
           do not lack discipline, work ethic, or leadership. What many lack

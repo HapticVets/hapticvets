@@ -46,10 +46,10 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 md:px-10">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 md:gap-4 md:px-10">
         <Link
           href="/"
-          className="text-base font-bold tracking-wide text-white md:text-lg"
+          className="max-w-full text-sm font-bold leading-snug tracking-wide text-white sm:text-base md:text-lg"
         >
           Haptic Nation Veteran Outreach
         </Link>
@@ -58,32 +58,32 @@ function Header() {
           href="https://train.hapticvets.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 transition hover:bg-white/10"
+          className="flex min-h-16 w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 transition hover:bg-white/10 sm:w-auto sm:gap-4 sm:px-4"
         >
-          <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-black/30">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black/30 sm:h-16 sm:w-16">
             <img
               src="/images/branding/training-logo.png"
               alt="Dog Trainer Program"
-              className="max-h-12 max-w-12 object-contain"
+              className="max-h-10 max-w-10 object-contain sm:max-h-12 sm:max-w-12"
             />
           </div>
 
-          <div className="flex flex-col leading-tight">
-            <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+          <div className="flex min-w-0 flex-col leading-tight">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-400 sm:tracking-[0.25em]">
               Online
             </span>
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">
+            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-400 sm:text-sm sm:tracking-[0.2em]">
               Dog Training
             </span>
           </div>
         </a>
 
-        <nav className="flex w-full flex-wrap gap-4 text-sm md:gap-6">
+        <nav className="flex w-full flex-wrap gap-2 text-sm sm:gap-3 md:gap-4">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-neutral-300 transition hover:text-white"
+              className="flex min-h-11 items-center rounded-full px-3 text-neutral-300 transition hover:bg-white/5 hover:text-white"
             >
               {item.label}
             </Link>
@@ -94,7 +94,7 @@ function Header() {
               href={donationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-amber-400 px-4 py-1.5 font-semibold text-black transition hover:bg-amber-300"
+              className="flex min-h-11 items-center rounded-full bg-amber-400 px-4 font-semibold text-black transition hover:bg-amber-300"
             >
               Donate
             </a>

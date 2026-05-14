@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Script from "next/script";
 
 export default function ContactPage() {
@@ -18,11 +18,13 @@ export default function ContactPage() {
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
@@ -75,8 +77,10 @@ export default function ContactPage() {
         strategy="afterInteractive"
       />
 
-      <section className="max-w-3xl mx-auto px-6 py-20 text-white">
-        <h1 className="text-4xl font-bold mb-6">Contact HNVO</h1>
+      <section className="mx-auto max-w-3xl px-2 py-14 text-white sm:px-6 sm:py-20">
+        <h1 className="mb-6 px-2 text-3xl font-bold sm:px-0 sm:text-4xl">
+          Contact HNVO
+        </h1>
 
         {success && (
           <p className="mb-6 text-green-400">
@@ -84,15 +88,15 @@ export default function ContactPage() {
           </p>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           {/* Honeypot */}
           <input type="text" name="companyFax" className="hidden" />
 
-          <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded" />
-          <input name="email" type="email" placeholder="Email Address" value={form.email} onChange={handleChange} required className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded" />
-          <input name="phone" placeholder="Phone Number (optional)" value={form.phone} onChange={handleChange} className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded" />
+          <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required className="min-h-12 w-full rounded border border-neutral-700 bg-neutral-900 p-4" />
+          <input name="email" type="email" placeholder="Email Address" value={form.email} onChange={handleChange} required className="min-h-12 w-full rounded border border-neutral-700 bg-neutral-900 p-4" />
+          <input name="phone" placeholder="Phone Number (optional)" value={form.phone} onChange={handleChange} className="min-h-12 w-full rounded border border-neutral-700 bg-neutral-900 p-4" />
 
-          <select name="interest" value={form.interest} onChange={handleChange} required className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded">
+          <select name="interest" value={form.interest} onChange={handleChange} required className="min-h-12 w-full rounded border border-neutral-700 bg-neutral-900 p-4">
             <option value="">What are you interested in?</option>
             <option>Dog Training</option>
             <option>Veteran Trade Program</option>
@@ -100,21 +104,21 @@ export default function ContactPage() {
             <option>General Inquiry</option>
           </select>
 
-          <select name="veteran" value={form.veteran} onChange={handleChange} required className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded">
+          <select name="veteran" value={form.veteran} onChange={handleChange} required className="min-h-12 w-full rounded border border-neutral-700 bg-neutral-900 p-4">
             <option value="">Are you a Veteran?</option>
             <option>Yes</option>
             <option>No</option>
           </select>
 
-          <textarea name="message" placeholder="Tell us more..." value={form.message} onChange={handleChange} rows={5} required className="w-full p-4 bg-neutral-900 border border-neutral-700 rounded" />
+          <textarea name="message" placeholder="Tell us more..." value={form.message} onChange={handleChange} rows={5} required className="w-full rounded border border-neutral-700 bg-neutral-900 p-4" />
 
           {/* ✅ Native Turnstile widget */}
           <div
-            className="cf-turnstile"
+            className="cf-turnstile mx-auto max-w-full overflow-x-auto"
             data-sitekey={siteKey}
           ></div>
 
-          <button type="submit" disabled={loading} className="w-full bg-yellow-500 text-black font-semibold py-4 rounded">
+          <button type="submit" disabled={loading} className="min-h-12 w-full rounded bg-yellow-500 py-4 font-semibold text-black">
             {loading ? "Sending..." : "Submit Request"}
           </button>
         </form>

@@ -12,16 +12,16 @@ function Section({
 }) {
   return (
     <section className="border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20">
         {eyebrow && (
-          <p className="text-sm uppercase tracking-[0.25em] text-amber-400">
+          <p className="text-xs uppercase tracking-[0.2em] text-amber-400 sm:text-sm sm:tracking-[0.25em]">
             {eyebrow}
           </p>
         )}
-        <h2 className="mt-4 max-w-3xl text-3xl font-bold md:text-5xl">
+        <h2 className="mt-4 max-w-3xl text-3xl font-bold sm:text-4xl md:text-5xl">
           {title}
         </h2>
-        <div className="mt-10">{children}</div>
+        <div className="mt-8 md:mt-10">{children}</div>
       </div>
     </section>
   );
@@ -107,7 +107,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative h-[90vh] w-full overflow-hidden border-b border-white/10">
+      <section className="relative min-h-[640px] w-full overflow-hidden border-b border-white/10 md:h-[90vh]">
         <img
           src="/images/hero/hnvo-hero.jpg"
           alt="HNVO Hero"
@@ -116,34 +116,34 @@ export default function HomePage() {
 
         <div className="absolute inset-0 bg-black/70" />
 
-        <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:px-10">
-          <p className="text-sm uppercase tracking-[0.28em] text-amber-400">
+        <div className="relative mx-auto flex min-h-[640px] max-w-7xl flex-col justify-center px-4 py-16 sm:px-6 md:h-full md:px-10 md:py-0">
+          <p className="text-xs uppercase tracking-[0.2em] text-amber-400 sm:text-sm sm:tracking-[0.28em]">
             Veteran Outreach • Trade Training • Homestead Vision
           </p>
 
-          <h1 className="mt-6 text-5xl font-bold leading-tight md:text-7xl">
+          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl md:text-7xl">
             A New Mission
             <br />
             After Service
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-neutral-300">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-neutral-300 sm:text-lg">
             Building a veteran-focused trade school, working dog program, and
             self-sustaining homestead system designed to create structure,
             responsibility, and real-world purpose after service.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Link
               href="/contact"
-              className="rounded-full bg-amber-400 px-6 py-3 font-semibold text-black transition hover:bg-amber-300"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-amber-400 px-6 py-3 font-semibold text-black transition hover:bg-amber-300"
             >
               Support the Mission
             </Link>
 
             <Link
               href="/partners"
-              className="rounded-full border border-white/20 px-6 py-3 transition hover:bg-white/5"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 px-6 py-3 transition hover:bg-white/5"
             >
               Partner With Us
             </Link>
@@ -156,9 +156,11 @@ export default function HomePage() {
           {buildPillars.map((item) => (
             <div
               key={item.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-8"
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
             >
-              <h3 className="text-2xl font-semibold">{item.title}</h3>
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                {item.title}
+              </h3>
               <p className="mt-4 text-sm leading-7 text-neutral-300">
                 {item.text}
               </p>
@@ -180,10 +182,12 @@ export default function HomePage() {
               <img
                 src={card.image}
                 alt={card.title}
-                className="h-64 w-full object-cover"
+                className="h-52 w-full object-cover sm:h-64"
               />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold">{card.title}</h3>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-xl font-semibold sm:text-2xl">
+                  {card.title}
+                </h3>
               </div>
             </div>
           ))}
@@ -198,9 +202,11 @@ export default function HomePage() {
           {credibilityPoints.map((point) => (
             <div
               key={point.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-8"
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
             >
-              <h3 className="text-2xl font-semibold">{point.title}</h3>
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                {point.title}
+              </h3>
               <p className="mt-4 text-sm leading-7 text-neutral-300">
                 {point.text}
               </p>
@@ -218,11 +224,13 @@ export default function HomePage() {
             <img
               src="/images/mission/mission-veterans.jpg"
               alt="Veteran Community"
-              className="h-72 w-full object-cover"
+              className="h-56 w-full object-cover sm:h-72"
             />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold">Veteran Community</h3>
-              <p className="mt-4 text-neutral-300">
+            <div className="p-5 sm:p-6">
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                Veteran Community
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-neutral-300 sm:text-base">
                 Veterans working together in a structured environment built on
                 teamwork, discipline, and shared purpose.
               </p>
@@ -233,11 +241,13 @@ export default function HomePage() {
             <img
               src="/images/mission/mission-homestead.jpg"
               alt="Homestead Therapy"
-              className="h-72 w-full object-cover"
+              className="h-56 w-full object-cover sm:h-72"
             />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold">Homestead Therapy</h3>
-              <p className="mt-4 text-neutral-300">
+            <div className="p-5 sm:p-6">
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                Homestead Therapy
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-neutral-300 sm:text-base">
                 Chickens are already in motion, and the next steps include
                 fencing, cattle infrastructure for milk and beef, and expanded
                 food systems that make the land more self-sustaining.
@@ -255,9 +265,9 @@ export default function HomePage() {
           {roadmap.map((phase) => (
             <div
               key={phase.phase}
-              className="rounded-3xl border border-white/10 bg-white/5 p-8"
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
             >
-              <h3 className="text-xl font-semibold text-amber-400">
+              <h3 className="text-lg font-semibold text-amber-400 sm:text-xl">
                 {phase.phase}
               </h3>
 
@@ -276,7 +286,7 @@ export default function HomePage() {
         title="Mission-aligned partnerships strengthen the system."
       >
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center sm:p-8">
             <div className="mb-6 flex h-32 items-center justify-center">
               <img
                 src="/images/partners/das-muller-logo.png"
@@ -295,21 +305,21 @@ export default function HomePage() {
                 href="https://www.patriotk9kennel.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black transition hover:bg-amber-300"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black transition hover:bg-amber-300"
               >
                 Visit Das Müller
               </a>
 
               <Link
                 href="/partners"
-                className="inline-block rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:bg-white/5"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:bg-white/5"
               >
                 View Sponsor Page
               </Link>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center sm:p-8">
             <div className="mb-6 flex h-32 items-center justify-center">
               <img
                 src="/images/partners/patriot-k9-logo.png"
@@ -328,14 +338,14 @@ export default function HomePage() {
                 href="https://train.hapticvets.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black transition hover:bg-amber-300"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black transition hover:bg-amber-300"
               >
                 Visit Dog Training
               </a>
 
               <Link
                 href="/partners"
-                className="inline-block rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:bg-white/5"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:bg-white/5"
               >
                 View Sponsor Page
               </Link>
@@ -345,8 +355,8 @@ export default function HomePage() {
       </Section>
 
       <Section eyebrow="Support HNVO" title="Help Build Something Real.">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center">
-          <p className="mx-auto max-w-3xl text-lg text-neutral-300">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center sm:p-10">
+          <p className="mx-auto max-w-3xl text-base leading-8 text-neutral-300 sm:text-lg">
             Haptic Nation Veteran Outreach is actively building a working system
             for veterans through trade training, working dog development, and
             self-sustaining homestead infrastructure. If you want to support,
@@ -356,14 +366,14 @@ export default function HomePage() {
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/contact"
-              className="inline-block rounded-full bg-amber-400 px-8 py-4 text-lg font-semibold text-black transition hover:bg-amber-300"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-amber-400 px-8 py-3 text-base font-semibold text-black transition hover:bg-amber-300 sm:w-auto sm:text-lg"
             >
               Become a Sponsor
             </Link>
 
             <Link
               href="/contact"
-              className="inline-block rounded-full border border-neutral-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-neutral-500"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-neutral-700 px-8 py-3 text-base font-semibold text-white transition hover:border-neutral-500 sm:w-auto sm:text-lg"
             >
               Support the Mission
             </Link>

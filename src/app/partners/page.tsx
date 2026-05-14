@@ -9,9 +9,11 @@ function Section({
 }) {
   return (
     <section className="border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <h2 className="text-3xl font-bold md:text-5xl">{title}</h2>
-        <div className="mt-10">{children}</div>
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20">
+        <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
+          {title}
+        </h2>
+        <div className="mt-8 md:mt-10">{children}</div>
       </div>
     </section>
   );
@@ -84,16 +86,16 @@ export default function PartnersPage() {
   return (
     <div>
       <section className="border-b border-white/10 bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-          <p className="text-sm uppercase tracking-[0.25em] text-amber-400">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24">
+          <p className="text-xs uppercase tracking-[0.2em] text-amber-400 sm:text-sm sm:tracking-[0.25em]">
             Partnerships
           </p>
 
-          <h1 className="mt-6 text-5xl font-bold md:text-7xl">
+          <h1 className="mt-6 text-4xl font-bold sm:text-5xl md:text-7xl">
             Fund the Mission
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-neutral-300">
+          <p className="mt-6 max-w-3xl text-base leading-8 text-neutral-300 sm:text-lg">
             Haptic Nation Veteran Outreach is building a self-sustaining system
             designed to help veterans transition into civilian life through
             trade training, land-based responsibility, working dog programs, and
@@ -105,7 +107,7 @@ export default function PartnersPage() {
           <div className="mt-10">
             <Link
               href="/contact"
-              className="rounded-full bg-amber-400 px-6 py-3 font-semibold text-black"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-amber-400 px-6 py-3 font-semibold text-black"
             >
               Become a Sponsor
             </Link>
@@ -115,8 +117,8 @@ export default function PartnersPage() {
 
       <Section title="How This System Is Built">
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h3 className="text-xl font-semibold text-amber-400">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-amber-400 sm:text-xl">
               Step 1 — Build the Revenue Base
             </h3>
             <p className="mt-4 text-neutral-300">
@@ -125,8 +127,8 @@ export default function PartnersPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h3 className="text-xl font-semibold text-amber-400">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-amber-400 sm:text-xl">
               Step 2 — Expand Food and Land Systems
             </h3>
             <p className="mt-4 text-neutral-300">
@@ -136,8 +138,8 @@ export default function PartnersPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h3 className="text-xl font-semibold text-amber-400">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-amber-400 sm:text-xl">
               Step 3 — Launch Full Trade Pathways
             </h3>
             <p className="mt-4 text-neutral-300">
@@ -151,8 +153,10 @@ export default function PartnersPage() {
 
       <Section title="What Is Already in Motion">
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h3 className="text-2xl font-semibold">Active Foundation</h3>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-xl font-semibold sm:text-2xl">
+              Active Foundation
+            </h3>
             <ul className="mt-6 space-y-3 text-sm leading-7 text-neutral-300">
               <li>• Land is already secured</li>
               <li>• Homesteading has already started</li>
@@ -162,8 +166,10 @@ export default function PartnersPage() {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h3 className="text-2xl font-semibold">Immediate Build Needs</h3>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <h3 className="text-xl font-semibold sm:text-2xl">
+              Immediate Build Needs
+            </h3>
             <ul className="mt-6 space-y-3 text-sm leading-7 text-neutral-300">
               <li>• Build an independent kennel for mission-owned dogs</li>
               <li>• Install fencing for larger livestock systems</li>
@@ -180,9 +186,9 @@ export default function PartnersPage() {
           {sponsorTiers.map((tier) => (
             <div
               key={tier.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-8"
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
             >
-              <h3 className="text-2xl font-semibold text-amber-400">
+              <h3 className="text-xl font-semibold text-amber-400 sm:text-2xl">
                 {tier.title}
               </h3>
 
@@ -202,7 +208,7 @@ export default function PartnersPage() {
 
       <Section title="Current Partners">
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center sm:p-8">
             <img
               src="/images/partners/das-muller-logo.png"
               alt="Das Müller Kennel"
@@ -215,7 +221,7 @@ export default function PartnersPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center sm:p-8">
             <img
               src="/images/partners/patriot-k9-logo.png"
               alt="Patriot K9 Command"
@@ -231,8 +237,8 @@ export default function PartnersPage() {
       </Section>
 
       <Section title="Build This With Us">
-        <div className="rounded-3xl border border-white/10 p-10 text-center">
-          <p className="text-lg text-neutral-300">
+        <div className="rounded-3xl border border-white/10 p-6 text-center sm:p-10">
+          <p className="text-base leading-8 text-neutral-300 sm:text-lg">
             This mission is being built in phases, with real land, real systems,
             and real infrastructure needs. If your company wants to help build
             something durable, practical, and veteran-focused, we want to work
@@ -242,7 +248,7 @@ export default function PartnersPage() {
           <div className="mt-6">
             <Link
               href="/contact"
-              className="rounded-full bg-amber-400 px-6 py-3 font-semibold text-black"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-amber-400 px-6 py-3 font-semibold text-black"
             >
               Start a Partnership
             </Link>
